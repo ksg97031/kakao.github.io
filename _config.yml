@@ -66,3 +66,5 @@ google_plus:
   username: kakaodev
 github_url:
   username: kakao
+
+theme: jekyll-theme-cayman
