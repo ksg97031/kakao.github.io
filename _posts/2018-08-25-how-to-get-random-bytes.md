@@ -125,7 +125,9 @@ def isInitialized(self):
         return False
 ```           
 
-이렇게 보면 순수 input pool에 entropy만을 사용하는 /dev/random에서 추출한 난수가 더 안전하다는 걸 알 수 있다. 하지만 만약 한 Application에서 entropy pool에 데이터를 독점하는 **DOS** 취약점이 발생하거나, 단편화된 네트워크 장비에 들어가 있는 OS처럼 Entropy Sources가 마땅치 않을 경우 /dev/random은 실용적이지 못하다. 현재 기술로 urandom_read시 난수 발생기에서 새롭게 생성된 Status를 예측하기란 굉장히 어렵기 때문에 /dev/urandom을 사용하는 게 더 현실적이고 효율적이기 때문에 많은 OS, Application에서 이를 활용한다는 걸 알 수 있다.
+## 보안
+
+이렇게 보면 순수 input pool에 entropy만을 사용하는 /dev/random에서 추출한 난수가 더 안전하다는 걸 알 수 있다. 하지만 만약 한 Application에서 entropy pool에 데이터를 독점하는 **DOS** 취약점이 발생하거나, 단편화된 네트워크 장비에 들어가 있는 OS처럼 Entropy Sources가 마땅치 않을 경우 /dev/random은 실용적이지 못하다. 현재 기술로 urandom_read시 난수 발생기에서 새롭게 생성된 Status를 예측하기란 굉장히 어렵기 때문에 /dev/urandom을 사용하는 게 더 현실적이고 효율적이다. 실제로 OS, Application에서 /dev/urandom에서 생성된 난수를 더 많이 활용한다는 걸 알 수 있다.
 
 ## 추가
 1. 사실 생각보다 리눅스에 Entropy Pool 생성은 더 복잡하다. Mouse, Keyboard, Interrupts, IDE 심지어 Microphone, Intel CPU 등 매우 복잡하고 수학적인 방법으로 Entropy pool를 생성한다.  
